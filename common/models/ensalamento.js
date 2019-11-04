@@ -113,9 +113,23 @@ module.exports = function(Ensalamento) {
             // Here you can specify the parameters of algorithm
             var parts = [
               new EnsaladorPart("Open", "open"),
-              new EnsaladorPart("Final", "exec",{day: [2,3,4,5,6,7]}),
+              new EnsaladorPart("PAPC","exec","{block: [pa,pc], course: [08B,11A,11B,16A,17A,19A,21A,26A,29A,96A,40001016041P1]}"),
+              new EnsaladorPart("CT","exec","{ block: [ct], course: [10F,15C,18F]}"),
+              new EnsaladorPart("EQ","exec","{ block: [eq], course: [06A]}"),
+              new EnsaladorPart("PD","exec","{ block: [pd], course: [01A,01B]}"),
+              new EnsaladorPart("PG","exec","{ block: [pg], course: [05A,103A] }"),
+              new EnsaladorPart("PKPL","exec","{ block: [pk,pk-2,pl], course: [03A,102A] }"),
+              new EnsaladorPart("PQ","exec","{ block: [pq], course: [12E] }"),
+              new EnsaladorPart("PF","exec","{ block: [pf], course: [02B] }"),
+              new EnsaladorPart("PH","exec","{ block: [ph], course: [15C,09B] }"),
+              new EnsaladorPart("PM","exec","{ block: [pm], course: [20A,2020,23A] }"),
+              new EnsaladorPart("TODOS","exec","{ block: [ct,eq,pa,pc,pd,pf,pg,ph,pk,pl,pm,pq,pr], course: [04B,05A,06A,08B,09B,103A,104A,105A,10F,11A,11B,12E,13A,15C,16A,17A,18F,19A,2020,20A,21A,22B,23A,26A,29A,31C,32D,33A,35B,40001016041P1,40C,41A,45C,46A,60A,61A,64A,65A,67A,76B,95A,96A,ppgengprod,ppgq] }"),
+              new EnsaladorPart("Restante","exec","{ block: [ct,eq,pa,pc,pd,pf,pg,ph,pk,pl,pm,pq,pr], course: [01A,01B,02B,03A,102A,24A] }"),
+              
+              new EnsaladorPart("Final", "exec","{day: [2,3,4,5,6,7]}"),
               new EnsaladorPart("Close", "close")
             ];
+            // Insert in the blank line stuff for humanities and bio if all else fails
             
             var e = new Ensalador(
               parts,
