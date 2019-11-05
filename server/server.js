@@ -1,9 +1,11 @@
 'use strict';
 
+    require('events').EventEmitter.defaultMaxListeners = 0;
 var loopback = require('loopback');
 var boot = require('loopback-boot');
 
 var app = module.exports = loopback();
+
 
 app.start = function() {
   // start the web server

@@ -31,9 +31,11 @@ Disciplina.search = async function(query) {
         for (var j=0; j< t.length; j++) {
             var horarios = await t[j].horarios.find();
             var professor = await t[j].professor.get()
+            var curso = await t[j].cursos.get()
             turmas.push({"turma":t[j],
                 "horarios":horarios,
                 "professor":professor,
+                "curso":curso,
                 "disciplina":disciplina}
             );
         }

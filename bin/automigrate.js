@@ -177,29 +177,29 @@ function criaHorarios(cb){
     {
       livre: false,
       dia:2,
-      horario_inicial:1,
-      horario_final:2,
+      horario_inicial:"15:30:00",
+      horario_final:"17:30:00",
       ensalamentoId:1
     },
     {
       livre: false,
       dia:3,
-      horario_inicial:1,
-      horario_final:2,
+      horario_inicial:"15:30:00",
+      horario_final:"17:30:00",
       ensalamentoId:1
     },
     {
       livre: false,
       dia:4,
-      horario_inicial:1,
-      horario_final:2,
+      horario_inicial:"15:30:00",
+      horario_final:"17:30:00",
       ensalamentoId:1
     },
     {
       livre: false,
       dia:2,
-      horario_inicial:1,
-      horario_final:2,
+      horario_inicial:"15:30:00",
+      horario_final:"17:30:00",
       ensalamentoId:1
     }
   ], function(err, horarios){

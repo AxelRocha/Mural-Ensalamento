@@ -5,6 +5,7 @@ const async     = require('async');
 const { fork }      = require('child_process');
 const loopback  = require('loopback');
 const Disciplina = app.models.Disciplina;
+const DEBUG = true
 
 module.exports = function(Turma) {
     Turma.validatesPresenceOf('disciplinaCod');
@@ -19,7 +20,6 @@ module.exports = function(Turma) {
         var _turmas = [];
         for(var i=0; i < turmas.length ; i++) {
             var turma = turmas[i];
-            console.log(turma);
             var t = await app.models.Turma.findById(turma.id)
             _turmas.push(t);
         }
@@ -106,10 +106,103 @@ module.exports = function(Turma) {
             turma_y.horarios.destroyAll()
         }
         turma_y.destroy()
-        console.log("turma x depois",turma_x)
         turma_x.save()
 
         return turmas;
     };
+    async function check_horario_merge(horarios) {
+        var horarios_iguais = true
+        var horario = horarios[0].horario
+        for (var i=1; i<horarios.length && horarios_iguais; i++) {
+            var _horario = horarios[i]
+            if (DEBUG)
+                console.log("Comparacao de horario merge: horario e _horario ",horario,_horario)
+            if (_horario.horario.horario_inicial != horario.horario_inicial ||
+                _horario.horario.horario_final != horario.horario_final ||
+                _horario.horario.dia != horario.dia)
+                horarios_iguais = false;
+        }
+        return horarios_iguais;
+
+    }
+    //itera todas as turmas e todos os horarios, para verificar se existe
+    //alguma turma com relação com horario
+    async function check_exist_turma(allturmas,horario) {
+        for (var i=0; i<allturmas.length; i++) {
+            var horarios_turma = allturmas[i];
+            for (var j=0; j<horarios_turma; j++) {
+                if (horarios_turma[j].id == horario.id)
+                    return true;
+            }
+        }
+        return false;
+    }
+    /**
+    * juntar dois horarios de turmas diferentes
+    * @param {array} horarios array de objetos horarios, incluindo turma
+    * @param {Function(Error, object)} callback
+    */
+
+    Turma.mergehorario = async function(horarios) {
+        var status = {"status":0, "msg":"inicio"};
+        var horarios_m = {};
+        var _horarios = []
+        for (var i = 0; i < horarios.length; i++) {
+            var h = horarios[i]
+            var _horario = await app.models.Horario.findById(h.id);
+            var t = await app.models.Turma.findById(h.turma);
+            _horarios.push({"horario":_horario,"turma":t});
+        }
+
+        if (_horarios.length <= 1)
+            return {"status":1, "msg":"lista de horarios possui menos de dois horarios"}
+        // verifica se todos os horarios são no mesmo dia e possui a mesma hora
+        // de inicio e fim. se sim então une, caso contrário retorna mensagem
+        // dizendo que os horarios são diferentes
+        if (!check_horario_merge(_horarios))
+            return {"status":2, "msg":"horarios são divergentes no dia ou hora de inicio ou fim"}
+
+
+        var allturmas = await app.models.Turma.find({include:{relation:"horarios"}})
+        // faz a uniao
+        var horario = _horarios[0];
+        for(var i=1; i < _horarios.length; i++ ) {
+            var h = _horarios[i];
+            await h.turma.horarios.remove(h.horario); //remove a relação de horario i com turma i
+            await h.turma.horarios.add(horario.horario) // adiciona a relação do horario 0 com a turma i
+            // verifica se o horario i possui alguma relação com alguma turma,
+            // se não tiver então deleta
+            if(!check_exist_turma(allturmas,h.horario)) 
+                h.horario.destroy();
+        }   
+
+        return {"status":3,"msg":"união de horarios feita com sucesso"};
+    };
+    /**
+ * cria ou atualiza turma
+ * @param {object} turma turma a ser inserida, contendo horarios
+ * @param {Function(Error, object)} callback
+ */
+
+Turma.create = async function(turma) {
+    var status;
+    console.log("turma entrada: ",turma)
+    return turma;
+    //verifica se existe o campo id, se sim encontra modelo correspondente,
+    //caso contrário cria
+    var _turma = await app.models.Turma.findOrCreate({where:{id:turma._id}},turma);
+    console.log("_turma: ",_turma)
+    for(var i=0; i< turma.horarios.length; i++) {
+        var horario = await app.models.Horario.findOrCreate({where:turma.horarios[i]},turma.horarios[i]);
+        console.log("horario: ",horario);
+        for (var j=0; j<horario.length; j++)
+            await _turma[0].horarios.add(horario[j])
+    }
+    
+    return status
+};
+
+
+
 
 };
