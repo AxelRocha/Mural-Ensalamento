@@ -26,6 +26,13 @@
     },
     "status": {
       "type": "string"
+    },
+    "completed": {
+      "type": "number",
+      "default": 0,
+      "postgresql": {
+        "dataType": "real"
+      }
     }
   },
   "validations": [],

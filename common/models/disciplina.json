@@ -87,6 +87,13 @@
       "principalId": "admin",
       "permission": "ALLOW",
       "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "search"
     }
   ],
   "methods": {
@@ -142,7 +149,7 @@
           "arg": "query",
           "type": "string",
           "required": true,
-          "description": "palavra chave para a pesquisa",
+          "description": "query",
           "http": {
             "source": "query"
           }
@@ -153,14 +160,14 @@
           "arg": "turmas",
           "type": "array",
           "root": false,
-          "description": "lista de turmas da disciplina"
+          "description": "turmas"
         }
       ],
-      "description": "pesquisa por uma disciplina, retorna turmas",
+      "description": "pesquisa por turma ",
       "http": [
         {
           "path": "/search",
-          "verb": "post"
+          "verb": "get"
         }
       ]
     }

@@ -96,7 +96,6 @@ async function handle_line(line) {
         
         // enconra curso
         var curso = await Curso.findById(row.curso_cod);
-        console.log(row.curso_cod)
         if (!curso) return {"status":true,"msg":"Curso não encontrado","row":row}
 
         //object turma
@@ -125,6 +124,9 @@ function convert_enconding(file_path) {
     fs.writeFile(file_path, output); // write csv converted in file_path
 
 }
+function get_completed(line,total_line) {
+    return (total_line)? Math.round(((100*(line+1)) / total_line)*10) / 10 : 0;
+}
 async function turma_import(container, file, options, callback) {
     var rows = []; // array of line csv
     var file_path = path.join(options.root, container,file); // get path of uploaded file
@@ -137,6 +139,7 @@ async function turma_import(container, file, options, callback) {
     csv.fromPath(file_path,{delimiter:';',headers:true}).on("data",function(data) {
         rows.push(data); }).on("end", async function(){
             // iterate earch row of css, and add course, klass and schedule.
+            const total_line = rows.length
             for (const [line_number, row ] of rows.entries()) {
                 var result = await handle_line(row);
                 // write error msg in fileupload
@@ -147,9 +150,15 @@ async function turma_import(container, file, options, callback) {
                         "fileUpload":fileupload.id
                     });
                 }
+
+                if (line_number % 10) {
+                    var completed = get_completed(line_number,total_line);
+                    await fileupload.updateAttribute("completed",completed);
+                }
             }
             // change status to finished
             await fileupload.updateAttribute("status","Terminado");
+            await fileupload.updateAttribute("completed",100.0);
 
     });
 };

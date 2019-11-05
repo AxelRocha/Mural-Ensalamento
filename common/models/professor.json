@@ -52,6 +52,13 @@
       "principalId": "admin",
       "permission": "ALLOW",
       "property": "*"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "search"
     }
   ],
   "methods": {}

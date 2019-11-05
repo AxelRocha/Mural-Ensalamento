@@ -8,20 +8,17 @@
   },
   "properties": {
     "organizador": {
-      "type": "string",
-      "required": true
+      "type": "string"
     },
     "vagas": {
       "type": "number",
       "required": true
     },
     "ano": {
-      "type": "number",
-      "required": true
+      "type": "number"
     },
     "periodo": {
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   },
   "validations": [],

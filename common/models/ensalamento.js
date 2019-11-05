@@ -12,9 +12,17 @@ var app = require('../../server/server');
 const {Ensalador, EnsaladorPart, Schedule, ScheduleCollection, Room, RoomColection, CurrentSchedule} = require(path.resolve(__dirname,'../../bin/ensalador/ensalador.js'));
 
 // Convert an instance of Horario into an Schedule (Ensalador) instance
+// TODO<Odair M. odairmario45@gmail.com>: refatorar essa função, o ensalador
+// utiliza os campos log e lat para decidir qual é a melhor sala. Idealmente
+// toas as turmas de um curso deve ser ensalado perto do centro geográfico do
+// curso. Mas da forma como foi modelado o banco, um horario pode está
+// relacionado a multiplas turmas de multiplos cursos, que torna inviavel
+// ensalar próximo do curso. Como alternativa a curto prazo, será utilizado a
+// localização do curso da primeira turma do horario.
 function getScheduleInstance(h, cb){
   var Horario = app.models.Horario;
   Horario.getCode(h.id, (err,horarioCode) => {
+      console.log(horarioCode);
     if(err) return cb(err,null);
     Horario.getTotalSize(h.id, (err,horarioSize) => {
       if(err) return cb(err,null);  
@@ -23,12 +31,14 @@ function getScheduleInstance(h, cb){
         code: horarioCode,
         id: h.id,
         day: h.dia,
-        ini: h.horario_inicial,
-        end: h.horario_final,
+        ini: parseInt(h.horario_inicial),
+        end: parseInt(h.horario_final),
         size: horarioSize,
         type: 1,
-        department: "d",
-        course: "c",
+        department: "informatica",
+        log: -49.2322392,
+        lat: -25.450472,
+        course: "21A",
         klass_id: 1
       });
       cb(null,schedule);
@@ -103,6 +113,9 @@ module.exports = function(Ensalamento) {
             // yaml new files
             rooms.save();
             schedules.save();
+              console.log("---------------- schedule -----------------------")
+              console.log(schedules)
+              console.log("-------------------------------------------------")
             var dataCurrent = schedules.toJSON().schedules.map(s =>{
                 return new Schedule(s)
             });

@@ -25,6 +25,10 @@
     },
     "motivo": {
       "type": "string"
+    },
+    "visible": {
+      "type": "boolean",
+      "default": true
     }
   },
   "validations": [],
