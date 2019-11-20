@@ -2,13 +2,13 @@
 # Adição de um mural ao projeto do ensalador
 
 - Projeto de Software/Design de Software - 2019
-- Lucas Braz Cunha
 - Axel Valene Rocha
+- Lucas Braz Cunha
 
 As configurações utilizadas durante o desenvolvimento do trabalho foram de banco em memória.
 
 Diagrama geral das classes do projeto no arquivo class_diagram.png
-Diagrama de classes apenas das mudanças no arquivo <arquivo>
+Diagrama de classes apenas das mudanças no arquivo mural_diagram.png
 
 ### Objetivo:
 O trabalho consistia e implementar um mural que será um agregador de informações/avisos úteis para os usuários do Departamento (alunos, servidores e professores), relativos às turmas (cancelamentos/provas/etc.), salas (troca de sala/sala em laboratório), dias de aula (cancelamentos/mudança de horário), entre outros. O mural deverá conter:
