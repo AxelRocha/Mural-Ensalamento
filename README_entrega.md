@@ -8,6 +8,7 @@
 As configurações utilizadas durante o desenvolvimento do trabalho foram de banco em memória.
 
 Diagrama geral das classes do projeto no arquivo class_diagram.png
+
 Diagrama de classes apenas das mudanças no arquivo mural_diagram.png
 
 ### Objetivo:
@@ -18,6 +19,7 @@ O trabalho consistia e implementar um mural que será um agregador de informaç�
 
 ### Changelog:
 - Adição do modelo "Aviso", que representa uma mensagem escrita no mural.
+- Adição de endpoints para o CRUD de Aviso e busca com filtro.
 - Adição de relacionamento entre o modelo "Professor" e o modelo "UsuarioGenerico".
 - Autentição em relação aos endpoints do modelo "Aviso":
 	- Apenas usuários autenticados podem realizar a criação de Avisos.
