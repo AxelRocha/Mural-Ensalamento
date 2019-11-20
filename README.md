@@ -1,6 +1,8 @@
 # Ensalamento-back
+Esse repositório é um fork do projeto do C3SL em https://gitlab.c3sl.ufpr.br/ensalamento/ensalamento-back/
 
 Olhar o arquivo README_entrega.md
+
 
 ## Getting Started
 
