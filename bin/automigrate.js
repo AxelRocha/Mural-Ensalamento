@@ -273,7 +273,8 @@ function criaRoles(cb){
         {name: 'comissao'},
         {name: 'secretario_setor'},
         {name: 'secretario_dpto'},
-        {name: 'secretario_curso'}
+        {name: 'secretario_curso'},
+        {name: 'professor'}
     ];
 
     async.each(roles, function(role, callback) {

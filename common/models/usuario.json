@@ -19,9 +19,14 @@
   "validations": [],
   "relations": {
     "secretario": {
-      "type": "embedsOne",
+      "type": "hasOne",
       "model": "Secretario",
-      "property": "secretario"
+      "foreignKey": "secretarioId"
+    },
+    "professor": {
+      "type": "hasOne",
+      "model": "Professor",
+      "foreignKey": "professorId"
     },
     "ensalamentos": {
       "type": "hasMany",
