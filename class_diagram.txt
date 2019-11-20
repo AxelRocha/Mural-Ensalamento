@@ -6,6 +6,7 @@ class Aviso {
   data_inicio : date
   data_fim : date
   usuarioId : number
+  orgaoId : number
 }
 
 class Bloco {
@@ -152,7 +153,7 @@ class Orgao {
   _id : number
 }
 
-Aviso o--> Usuario : criador
+Aviso o--> Usuario : responsavel
 Aviso o--> Sala : sala
 Aviso o--> Turma : turma
 Aviso o--> Orgao : orgao
