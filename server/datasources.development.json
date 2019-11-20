@@ -1,18 +1,11 @@
 {
-	"db": {
-		"name": "db",
-		"connector": "memory"
-	},
-	"ensalamento": {
-		"connector": "sqlite3",
-		"name": "ensalamento",
-		"file": "./ensalamento.db"
-	},
-	"container": {
-		"name": "container",
-		"connector": "loopback-component-storage",
-		"provider": "filesystem",
-		"root": "sie-report"
-	}
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "ensalamento": {
+  "name": "ensalamento",
+  "connector": "memory",
+  "database": "ensalamento"
+ }
 }
-

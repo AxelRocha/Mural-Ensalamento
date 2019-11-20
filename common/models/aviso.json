@@ -1,0 +1,51 @@
+{
+  "name": "Aviso",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "mensagem": {
+      "type": "string",
+      "required": true
+    },
+    "is_valido": {
+      "type": "boolean",
+      "required": true,
+      "default": true
+    },
+    "data_inicio": {
+      "type": "date"
+    },
+    "data_fim": {
+      "type": "date",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "criador": {
+      "type": "belongsTo",
+      "model": "Usuario",
+      "foreignKey": "usuarioId"
+    },
+    "sala": {
+      "type": "belongsTo",
+      "model": "Sala",
+      "foreignKey": "salaId"
+    },
+    "turma": {
+      "type": "belongsTo",
+      "model": "Turma",
+      "foreignKey": "turmaId"
+    },
+    "orgao": {
+      "type": "belongsTo",
+      "model": "Orgao",
+      "foreignKey": "orgaoId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

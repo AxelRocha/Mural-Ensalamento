@@ -27,6 +27,11 @@
       "type": "hasMany",
       "model": "Ensalamento",
       "foreignKey": "ensalamentoId"
+    },
+    "avisos": {
+      "type": "hasMany",
+      "model": "Aviso",
+      "foreignKey": "usuarioId"
     }
   },
   "acls": [

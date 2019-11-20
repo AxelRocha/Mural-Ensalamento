@@ -74,6 +74,11 @@
       "options": {
         "nestRemoting": true
       }
+    },
+    "avisos": {
+      "type": "hasMany",
+      "model": "Aviso",
+      "foreignKey": "salaId"
     }
   },
   "acls": [

@@ -29,6 +29,11 @@
       "type": "belongsTo",
       "model": "Secretario",
       "foreignKey": "secretarioId"
+    },
+    "avisos": {
+      "type": "hasMany",
+      "model": "Aviso",
+      "foreignKey": "orgaoId"
     }
   },
   "acls": [
