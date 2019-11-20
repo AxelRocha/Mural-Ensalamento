@@ -16,7 +16,8 @@
       "default": true
     },
     "data_inicio": {
-      "type": "date"
+      "type": "date",
+      "required": true
     },
     "data_fim": {
       "type": "date",
@@ -25,11 +26,15 @@
     "usuarioId" : {
       "type": "number",
       "required": true
+    },
+    "orgaoId": {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
   "relations": {
-    "criador": {
+    "responsavel": {
       "type": "belongsTo",
       "model": "Usuario",
       "foreignKey": "usuarioId"
@@ -59,7 +64,7 @@
       "property": "find"
     },
     {
-      "accessType": "EXECUTE",
+      "accessType": "WRITE",
       "principalType": "ROLE",
       "principalId": "$authenticated",
       "permission": "ALLOW",

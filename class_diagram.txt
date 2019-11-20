@@ -1,0 +1,208 @@
+@startuml
+
+class Aviso {
+  mensagem : string
+  is_valido : boolean
+  data_inicio : date
+  data_fim : date
+  usuarioId : number
+}
+
+class Bloco {
+  localizacao : geopoint
+  nome : string
+  codigo : string
+  tamanho : number
+  _id : number
+}
+
+class container {
+}
+
+class Curso {
+  nome : string
+  codigo : string
+  _id : number
+}
+
+class Departamento {
+  nome : string
+  codigo : string
+  _id : number
+}
+
+class Disciplina {
+  codigo : String
+  nome : String
+  carga_horaria : Number
+  duracao : String
+  modalidade : String
+  _id : number
+  prototype.addEquivalencia()
+  prototype.getEquivalencias()
+  prototype.deleteEquivalencia()
+  search()
+}
+
+class Ensalamento {
+  ensalar()
+  upload()
+}
+
+class Equivalenciadisciplina {
+}
+
+class FileUploadError {
+  line : number
+  message : string
+}
+
+class FileUpload {
+  date : date
+  letive_init : date
+  letive_end : date
+  container_name : string
+  status : string
+  completed : number
+}
+
+class Horario {
+  dia : number
+  horario_inicial : string
+  horario_final : string
+  livre : boolean
+  motivo : string
+  visible : boolean
+}
+
+class Professor {
+  codigo : string
+  nome : string
+  website : string
+  email : string
+  _id : number
+}
+
+class Recursodesala {
+  descricao : string
+}
+
+class Sala {
+  nome : string
+  codigo : string
+  localizacao : geopoint
+  andar : number
+  capacidade : number
+  restrita : boolean
+  observacao : string
+  _id : number
+}
+
+class Secretario {
+  vinculo : string
+}
+
+class Semestre {
+  semestre : string
+  public : boolean
+}
+
+class Setor {
+  website : string
+  email : string
+  nome : string
+  codigo : string
+  _id : number
+}
+
+class Tipodesala {
+  nome : string
+}
+
+class Turma {
+  codigo : string
+  data_inicio : date
+  data_fim : date
+  merged : boolean
+  juntar()
+  mergehorario()
+  create()
+}
+
+class Usuario {
+  nome : string
+  restricao : string
+  prototype.setRole()
+  prototype.getRole()
+  prototype.updateRole()
+  prototype.deleteRole()
+}
+
+class Evento {
+  organizador : string
+  vagas : number
+  ano : number
+  periodo : string
+}
+
+class Orgao {
+  nome : string
+  localizacao : geopoint
+  codigo : string
+  _id : number
+}
+
+Aviso o--> Usuario : criador
+Aviso o--> Sala : sala
+Aviso o--> Turma : turma
+Aviso o--> Orgao : orgao
+Bloco o--> Setor : setor
+Curso o--> Bloco : bloco
+Curso o--> Setor : setor
+Curso -- Disciplina : disciplinas
+Departamento o--> Setor : setor
+Departamento *--> Turma : turmas
+Departamento *--> Professor : professores
+Disciplina *--> Turma : turmas
+Disciplina -- Recursodesala : recursosnecessarios
+Disciplina o--> Tipodesala : tipo_sala_necessaria
+Disciplina o--> Departamento : departamento
+Ensalamento *--> Horario : horarios
+Ensalamento o--> Usuario : usuario
+Equivalenciadisciplina o--> Disciplina : disciplina1
+Equivalenciadisciplina o--> Disciplina : disciplina2
+FileUploadError o--> FileUpload : fileUpload
+FileUpload -- FileUploadError : errors
+FileUpload o--> Semestre : semestre
+Horario o--> Sala : sala
+Horario o--> Ensalamento : ensalamento
+Professor o--> Departamento : departamento
+Professor *--> Turma : turmas
+Sala o--> Bloco : bloco
+Sala -- Recursodesala : recursos
+Sala o--> Tipodesala : tipo
+Sala o--> Secretario : secretario
+Sala *--> Horario : horarios
+Sala *--> Aviso : avisos
+Secretario *--> Orgao : orgaos
+Secretario *--> Sala : salas
+Semestre *--> Turma : turmas
+Semestre *--> FileUpload : fileUploads
+Setor *--> Departamento : departamentos
+Setor *--> Bloco : blocos
+Setor *--> Curso : cursos
+Turma o--> Departamento : departamento
+Turma o--> Disciplina : disciplina
+Turma o--> Semestre : semestre
+Turma o--> Professor : professor
+Turma o--> Curso : cursos
+Turma *--> Turma : turmasMergeds
+Turma *--> Aviso : avisos
+Usuario *--> Secretario : secretario
+Usuario *--> Professor : professor
+Usuario *--> Ensalamento : ensalamentos
+Usuario *--> Aviso : avisos
+Evento -- Horario : horarios
+Orgao o--> Secretario : secretario
+Orgao *--> Aviso : avisos
+@enduml
