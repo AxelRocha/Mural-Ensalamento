@@ -1,9 +1,9 @@
 
 # Adição de um mural ao projeto do ensalador
 
-Projeto de Software/Design de Software - 2019
-Lucas Braz Cunha
-Axel Valene Rocha
+- Projeto de Software/Design de Software - 2019
+- Lucas Braz Cunha
+- Axel Valene Rocha
 
 As configurações utilizadas durante o desenvolvimento do trabalho foram de banco em memória.
 
