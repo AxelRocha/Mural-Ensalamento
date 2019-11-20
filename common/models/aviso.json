@@ -21,6 +21,10 @@
     "data_fim": {
       "type": "date",
       "required": true
+    },
+    "usuarioId" : {
+      "type": "number",
+      "required": true
     }
   },
   "validations": [],
@@ -48,47 +52,30 @@
   },
   "acls": [
     {
+      "accessType": "READ",
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
+      "property": "find"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$authenticated",
+      "permission": "ALLOW",
+      "property": "create"
+    },
+    {
       "property": "*",
-      "accessType": "READ"
-    },
-    {
       "principalType": "ROLE",
       "principalId": "$everyone",
-      "permission": "DENY",
-      "property": "*"
+      "permission": "DENY"
     },
     {
+      "accessType": "WRITE",
       "principalType": "ROLE",
-      "principalId": "professor",
-      "permission": "ALLOW",
-      "property": "*"
-    },
-    {
-      "principalType": "ROLE",
-      "principalId": "admin",
-      "permission": "ALLOW",
-      "property": "*"
-    },
-    {
-      "principalType": "ROLE",
-      "principalId": "secreatrio_setor",
-      "permission": "ALLOW",
-      "property": "*"
-    },
-    {
-      "principalType": "ROLE",
-      "principalId": "secretario_dpto",
-      "permission": "ALLOW",
-      "property": "*"
-    },
-    {
-      "principalType": "ROLE",
-      "principalId": "secretario_curso",
-      "permission": "ALLOW",
-      "property": "*"
+      "principalId": "$owner",
+      "permission": "ALLOW"
     }
   ],
   "methods": {}

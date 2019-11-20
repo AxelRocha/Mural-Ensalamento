@@ -39,20 +39,7 @@
       "foreignKey": "usuarioId"
     }
   },
-  "acls": [
-    {
-      "principalType": "ROLE",
-      "principalId": "$everyone",
-      "permission": "DENY",
-      "property": "*"
-    },
-    {
-      "principalType": "ROLE",
-      "principalId": "admin",
-      "permission": "ALLOW",
-      "property": "*"
-    }
-  ],
+  "acls": [],
   "methods": {
     "prototype.setRole": {
       "accepts": [
