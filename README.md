@@ -1,5 +1,7 @@
 # Ensalamento-back
 
+Olhar o arquivo README_entrega.md
+
 ## Getting Started
 
 ```bash
