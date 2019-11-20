@@ -1,22 +1,18 @@
 {
-  "db": {
-    "name": "db",
-    "connector": "memory"
-  },
-  "ensalamento": {
-  "name": "ensalamento",
-  "connector": "postgresql",
-  "host": "${PGHOST}",
-  "port": 5432,
-  "database": "ensalamento",
-  "password": "${POSTGRES_PASSWORD}",
-  "user":  "${POSTGRES_USER}",
-  "ssl": false
- },
-  "container": {
-    "name": "container",
-    "connector": "loopback-component-storage",
-    "provider": "filesystem",
-    "root": "sie-report"
-    }
+	"db": {
+		"name": "db",
+		"connector": "memory"
+	},
+	"ensalamento": {
+		"connector": "sqlite3",
+		"name": "ensalamento",
+		"file": "./ensalamento.db"
+	},
+	"container": {
+		"name": "container",
+		"connector": "loopback-component-storage",
+		"provider": "filesystem",
+		"root": "sie-report"
+	}
 }
+

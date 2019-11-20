@@ -23,6 +23,7 @@
     "loopback-component-explorer": "^6.3.1",
     "loopback-component-storage": "^3.6.0",
     "loopback-connector-postgresql": "^3.5.0",
+    "loopback-connector-sqlite3": "^3.0.0",
     "serve-favicon": "^2.5.0",
     "strong-error-handler": "^3.2.0"
   },
