@@ -7,7 +7,7 @@ Olhar o arquivo README_entrega.md
 ## Getting Started
 
 ```bash
- git clone --recurse-submodules git@gitlab.c3sl.ufpr.br:ensalamento/ensalamento-back
+ git clone --recurse-submodules git@github.com:AxelRocha/Mural-Ensalamento.git
  cd ensalamento-back
  docker-compose up
  ```
